@@ -88,6 +88,19 @@ function loadData() {
     if (savedData) {
         console.log('✓ Loading portfolio data from localStorage');
         console.log('Data found:', JSON.parse(savedData));
+
+        // Check if this is a fresh save (within last 10 seconds)
+        const lastSaveTime = localStorage.getItem('portfolioLastSaveTime');
+        if (lastSaveTime) {
+            const timeSinceLastSave = Date.now() - parseInt(lastSaveTime);
+            if (timeSinceLastSave < 10000) { // 10 seconds
+                // Show alert for recent changes
+                setTimeout(() => {
+                    showSaveAlert();
+                }, 500);
+            }
+        }
+
         return JSON.parse(savedData);
     } else {
         console.log('ℹ No saved data found. Using default portfolio data.');
@@ -99,6 +112,30 @@ function loadData() {
 // Save data to localStorage
 function saveData(data) {
     localStorage.setItem('portfolioData', JSON.stringify(data));
+}
+
+// Show alert when changes are detected
+function showSaveAlert() {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'save-alert';
+    alertDiv.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <span>Changes saved successfully!</span>
+    `;
+    document.body.appendChild(alertDiv);
+
+    // Animate in
+    setTimeout(() => {
+        alertDiv.classList.add('show');
+    }, 100);
+
+    // Remove after 4 seconds
+    setTimeout(() => {
+        alertDiv.classList.remove('show');
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 300);
+    }, 4000);
 }
 
 // Render portfolio

@@ -47,15 +47,15 @@ function checkPassword() {
     const passwordInput = document.getElementById('password-input');
     const password = passwordInput.value;
     const errorDiv = document.getElementById('login-error');
-    
+
     if (!password) {
         errorDiv.textContent = 'Please enter a password';
         return;
     }
-    
+
     const storedHash = getStoredPasswordHash();
     const inputHash = hashPassword(password);
-    
+
     if (inputHash === storedHash) {
         setAuthenticated(true);
         showAdminPanel();
@@ -71,22 +71,22 @@ function setPassword() {
     const newPassword = document.getElementById('new-password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
     const errorDiv = document.getElementById('setup-error');
-    
+
     if (!newPassword || !confirmPassword) {
         errorDiv.textContent = 'Please fill in all fields';
         return;
     }
-    
+
     if (newPassword.length < 6) {
         errorDiv.textContent = 'Password must be at least 6 characters long';
         return;
     }
-    
+
     if (newPassword !== confirmPassword) {
         errorDiv.textContent = 'Passwords do not match';
         return;
     }
-    
+
     const passwordHash = hashPassword(newPassword);
     setStoredPasswordHash(passwordHash);
     setAuthenticated(true);
@@ -131,42 +131,42 @@ function updatePassword() {
     const newPassword = document.getElementById('new-password-change').value;
     const confirmPassword = document.getElementById('confirm-password-change').value;
     const errorDiv = document.getElementById('password-error');
-    
+
     if (!currentPassword || !newPassword || !confirmPassword) {
         errorDiv.textContent = 'Please fill in all fields';
         return;
     }
-    
+
     // Verify current password
     const storedHash = getStoredPasswordHash();
     const currentHash = hashPassword(currentPassword);
-    
+
     if (currentHash !== storedHash) {
         errorDiv.textContent = 'Current password is incorrect';
         return;
     }
-    
+
     if (newPassword.length < 6) {
         errorDiv.textContent = 'New password must be at least 6 characters long';
         return;
     }
-    
+
     if (newPassword !== confirmPassword) {
         errorDiv.textContent = 'New passwords do not match';
         return;
     }
-    
+
     // Update password
     const newHash = hashPassword(newPassword);
     setStoredPasswordHash(newHash);
-    
+
     closeChangePassword();
-    
+
     // Show success message
     const message = document.getElementById('save-message');
     message.className = 'save-message success';
     message.textContent = '✓ Password updated successfully!';
-    
+
     setTimeout(() => {
         message.className = 'save-message';
     }, 3000);
@@ -179,10 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
         showAdminPanel();
         return;
     }
-    
+
     // Check if password is set up
     checkPasswordSetup();
-    
+
     // Add Enter key listeners
     const passwordInput = document.getElementById('password-input');
     if (passwordInput) {
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     const newPasswordInput = document.getElementById('new-password');
     if (newPasswordInput) {
         newPasswordInput.addEventListener('keypress', (e) => {
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     const confirmPasswordInput = document.getElementById('confirm-password');
     if (confirmPasswordInput) {
         confirmPasswordInput.addEventListener('keypress', (e) => {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // Modal Enter key listeners
     const currentPasswordInput = document.getElementById('current-password');
     if (currentPasswordInput) {
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     const newPasswordChangeInput = document.getElementById('new-password-change');
     if (newPasswordChangeInput) {
         newPasswordChangeInput.addEventListener('keypress', (e) => {
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     const confirmPasswordChangeInput = document.getElementById('confirm-password-change');
     if (confirmPasswordChangeInput) {
         confirmPasswordChangeInput.addEventListener('keypress', (e) => {
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // Close modal on overlay click
     const modalOverlay = document.getElementById('password-modal');
     if (modalOverlay) {
@@ -339,7 +339,7 @@ let projectCounter = 0;
 // Load and display data
 function loadAdminData() {
     const data = loadData();
-    
+
     // Load personal info
     document.getElementById('name').value = data.name;
     document.getElementById('phone').value = data.contact.phone;
@@ -347,16 +347,16 @@ function loadAdminData() {
     document.getElementById('linkedin').value = data.contact.linkedin;
     document.getElementById('github').value = data.contact.github;
     document.getElementById('description').value = data.description;
-    
+
     // Load experience
     renderExperiences(data.experience);
-    
+
     // Load education
     renderEducations(data.education);
-    
+
     // Load projects
     renderProjects(data.projects);
-    
+
     // Load skills
     document.getElementById('skills').value = data.skills.skills.join(', ');
     document.getElementById('languages').value = data.skills.languages.join(', ');
@@ -393,7 +393,7 @@ function addExperienceItem(exp, index) {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'item-card';
     itemDiv.id = `exp-${index}`;
-    
+
     itemDiv.innerHTML = `
         <div class="item-card-header">
             <span class="item-card-title">Experience ${index + 1}</span>
@@ -425,9 +425,9 @@ function addExperienceItem(exp, index) {
             <button type="button" class="btn-add-bullet" onclick="addExperienceBullet(${index})"><i class="fas fa-plus"></i> Add Point</button>
         </div>
     `;
-    
+
     container.appendChild(itemDiv);
-    
+
     // Render bullets
     const bulletsContainer = document.getElementById(`exp-bullets-${index}`);
     if (exp.description && exp.description.length > 0) {
@@ -493,7 +493,7 @@ function addEducationItem(edu, index) {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'item-card';
     itemDiv.id = `edu-${index}`;
-    
+
     itemDiv.innerHTML = `
         <div class="item-card-header">
             <span class="item-card-title">Education ${index + 1}</span>
@@ -524,7 +524,7 @@ function addEducationItem(edu, index) {
             <textarea class="form-control edu-courses" rows="3" placeholder="e.g., Course 1, Course 2, Course 3">${edu.courses || ''}</textarea>
         </div>
     `;
-    
+
     container.appendChild(itemDiv);
 }
 
@@ -556,7 +556,7 @@ function addProjectItem(project, index) {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'item-card';
     itemDiv.id = `proj-${index}`;
-    
+
     itemDiv.innerHTML = `
         <div class="item-card-header">
             <span class="item-card-title">Project ${index + 1}</span>
@@ -577,7 +577,7 @@ function addProjectItem(project, index) {
             <textarea class="form-control proj-description" rows="4" placeholder="Project description...">${project.description || ''}</textarea>
         </div>
     `;
-    
+
     container.appendChild(itemDiv);
 }
 
@@ -604,35 +604,38 @@ function savePortfolio() {
             languages: document.getElementById('languages').value.split(',').map(s => s.trim()).filter(s => s)
         }
     };
-    
+
     try {
         // Save to localStorage
         localStorage.setItem('portfolioData', JSON.stringify(data));
-        
+
+        // Store timestamp for change detection
+        localStorage.setItem('portfolioLastSaveTime', Date.now().toString());
+
         // Verify the save was successful
         const savedData = localStorage.getItem('portfolioData');
         const isSuccess = savedData !== null;
-        
+
         // Console logging for debugging
         console.log('✓ Portfolio data saved to localStorage');
         console.log('Data structure:', data);
         console.log('localStorage key: portfolioData');
         console.log('Saved successfully:', isSuccess);
-        
+
         const message = document.getElementById('save-message');
         message.className = 'save-message success';
         message.textContent = '✓ Portfolio saved successfully! Open the portfolio page to see changes.';
-        
+
         setTimeout(() => {
             message.className = 'save-message';
         }, 5000);
     } catch (error) {
         console.error('✗ Error saving portfolio data:', error);
-        
+
         const message = document.getElementById('save-message');
         message.className = 'save-message error';
         message.textContent = '✗ Error saving portfolio. Check console for details.';
-        
+
         setTimeout(() => {
             message.className = 'save-message';
         }, 5000);
@@ -642,10 +645,10 @@ function savePortfolio() {
 function collectExperiences() {
     const experiences = [];
     const expCards = document.querySelectorAll('[id^="exp-"]');
-    
+
     expCards.forEach((card, index) => {
         const bullets = Array.from(card.querySelectorAll('.exp-bullet')).map(input => input.value.trim()).filter(v => v);
-        
+
         experiences.push({
             title: card.querySelector('.exp-title').value,
             company: card.querySelector('.exp-company').value,
@@ -654,14 +657,14 @@ function collectExperiences() {
             description: bullets
         });
     });
-    
+
     return experiences;
 }
 
 function collectEducations() {
     const educations = [];
     const eduCards = document.querySelectorAll('[id^="edu-"]');
-    
+
     eduCards.forEach(card => {
         educations.push({
             title: card.querySelector('.edu-title').value,
@@ -671,14 +674,14 @@ function collectEducations() {
             courses: card.querySelector('.edu-courses').value
         });
     });
-    
+
     return educations;
 }
 
 function collectProjects() {
     const projects = [];
     const projCards = document.querySelectorAll('[id^="proj-"]');
-    
+
     projCards.forEach(card => {
         projects.push({
             title: card.querySelector('.proj-title').value,
@@ -686,7 +689,7 @@ function collectProjects() {
             description: card.querySelector('.proj-description').value
         });
     });
-    
+
     return projects;
 }
 
@@ -694,11 +697,11 @@ function resetPortfolio() {
     if (confirm('Are you sure you want to reset to default data? This will overwrite all current changes.')) {
         localStorage.removeItem('portfolioData');
         loadAdminData();
-        
+
         const message = document.getElementById('save-message');
         message.className = 'save-message success';
         message.textContent = '✓ Portfolio reset to default!';
-        
+
         setTimeout(() => {
             message.className = 'save-message';
         }, 3000);
