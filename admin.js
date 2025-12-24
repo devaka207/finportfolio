@@ -605,15 +605,38 @@ function savePortfolio() {
         }
     };
     
-    localStorage.setItem('portfolioData', JSON.stringify(data));
-    
-    const message = document.getElementById('save-message');
-    message.className = 'save-message success';
-    message.textContent = '✓ Portfolio saved successfully!';
-    
-    setTimeout(() => {
-        message.className = 'save-message';
-    }, 3000);
+    try {
+        // Save to localStorage
+        localStorage.setItem('portfolioData', JSON.stringify(data));
+        
+        // Verify the save was successful
+        const savedData = localStorage.getItem('portfolioData');
+        const isSuccess = savedData !== null;
+        
+        // Console logging for debugging
+        console.log('✓ Portfolio data saved to localStorage');
+        console.log('Data structure:', data);
+        console.log('localStorage key: portfolioData');
+        console.log('Saved successfully:', isSuccess);
+        
+        const message = document.getElementById('save-message');
+        message.className = 'save-message success';
+        message.textContent = '✓ Portfolio saved successfully! Open the portfolio page to see changes.';
+        
+        setTimeout(() => {
+            message.className = 'save-message';
+        }, 5000);
+    } catch (error) {
+        console.error('✗ Error saving portfolio data:', error);
+        
+        const message = document.getElementById('save-message');
+        message.className = 'save-message error';
+        message.textContent = '✗ Error saving portfolio. Check console for details.';
+        
+        setTimeout(() => {
+            message.className = 'save-message';
+        }, 5000);
+    }
 }
 
 function collectExperiences() {

@@ -84,7 +84,16 @@ const defaultData = {
 // Load data from localStorage or use default
 function loadData() {
     const savedData = localStorage.getItem('portfolioData');
-    return savedData ? JSON.parse(savedData) : defaultData;
+
+    if (savedData) {
+        console.log('✓ Loading portfolio data from localStorage');
+        console.log('Data found:', JSON.parse(savedData));
+        return JSON.parse(savedData);
+    } else {
+        console.log('ℹ No saved data found. Using default portfolio data.');
+        console.log('Default data:', defaultData);
+        return defaultData;
+    }
 }
 
 // Save data to localStorage
@@ -94,11 +103,13 @@ function saveData(data) {
 
 // Render portfolio
 function renderPortfolio() {
+    console.log('🎨 Rendering portfolio...');
     const data = loadData();
-    
+    console.log('Using data for:', data.name);
+
     // Update name
     document.querySelector('.hero-name').textContent = data.name;
-    
+
     // Update contact info
     const contactHTML = `
         <span><i class="fas fa-phone"></i> ${data.contact.phone}</span>
@@ -107,10 +118,10 @@ function renderPortfolio() {
         <span><i class="fab fa-github"></i> ${data.contact.github}</span>
     `;
     document.querySelector('.contact-info').innerHTML = contactHTML;
-    
+
     // Update description
     document.querySelector('.hero-description').textContent = data.description;
-    
+
     // Render experience
     const experienceHTML = data.experience.map(exp => `
         <div class="experience-item">
@@ -134,7 +145,7 @@ function renderPortfolio() {
         </div>
     `).join('');
     document.querySelector('.experience-list').innerHTML = experienceHTML;
-    
+
     // Render education
     const educationHTML = data.education.map(edu => `
         <div class="education-item">
@@ -148,7 +159,7 @@ function renderPortfolio() {
         </div>
     `).join('');
     document.querySelector('.education-list').innerHTML = educationHTML;
-    
+
     // Render projects
     const projectsHTML = data.projects.map(project => `
         <div class="project-item">
@@ -158,7 +169,7 @@ function renderPortfolio() {
         </div>
     `).join('');
     document.querySelector('.projects-grid').innerHTML = projectsHTML;
-    
+
     // Render skills
     const skillsHTML = `
         <div class="skills-section">
@@ -180,16 +191,16 @@ function renderPortfolio() {
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', () => {
     renderPortfolio();
-    
+
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    
+
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
     }
-    
+
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
