@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const defaultData = {
-    name: "Akshay Hegde",
+    name: "AKSHAY HEGDE",
     contact: {
         phone: "+91 9483280080",
         email: "akshayhegde19@gmail.com",
@@ -266,9 +266,9 @@ const defaultData = {
             location: "Bengaluru, KA",
             period: "Jan 2024 – Present",
             description: [
-                "Led development of Cloud Analytics Platform for motors & controllers (Grafana + PrometheusDB); currently in user validation by 6 + OEM customers ,enabling real-time performance insights and reducing diagnostic turnaround time by 35%",
-                "Managed cross-functional collaboration between hardware, firmware, and software teams to deliver integrated product experiences for cargo 3W and 2W OEMs . (VCU Less Architecture)",
-                "Spearheaded customer acquisition (13 new + 1 major OEM) by aligning technical roadmap with business goals, improving revenue pipeline by 20% YoY"
+                "Led development of Cloud Analytics Platform for motors & controllers (Grafana + PrometheusDB); currently in user validation by 6+ OEM customers, reducing diagnostic turnaround time by 35%.",
+                "Managed cross-functional collaboration between hardware, firmware, and software teams for cargo 3W and 2W OEMs (VCU Less Architecture).",
+                "Spearheaded customer acquisition (13 new + 1 major OEM), improving revenue pipeline by 20% YoY."
             ]
         },
         {
@@ -276,14 +276,22 @@ const defaultData = {
             company: "Sirma Business Consulting",
             location: "Bengaluru, KA",
             period: "Feb 2023 – Dec 2023",
-            description: []
+            description: [
+                "Worked on implementations for core banking, payments, deposits, lending, and regulatory modules.",
+                "Translated bank/NBFC business requirements into PRDs, user stories, and functional specifications.",
+                "Managed collaboration between engineering and QA teams for high-quality delivery."
+            ]
         },
         {
             title: "Product Intern",
             company: "Niro.money",
             location: "Bengaluru, KA",
             period: "Aug 2022 – Jan 2023",
-            description: []
+            description: [
+                "Built strategic B2B partnerships with NBFCs for scalable lending products.",
+                "Enabled paperless KYC, identity verification, and electronic documentation for compliant customer onboarding.",
+                "Built and managed secure partner APIs for lending operations."
+            ]
         }
     ],
     education: [
@@ -291,44 +299,39 @@ const defaultData = {
             title: "Executive Fintech Programme",
             school: "IIM Bangalore",
             location: "Bengaluru, KA",
-            period: "October 2025",
-            courses: "Corporate Finance, Regulation, Lending, Insurance, Wealth Management, New Age Business Models, Sales 101, Marketing, Unit Economics, Compliance"
+            period: "Expected Oct 2025",
+            courses: "Corporate Finance, Regulation, Lending, Wealth Management, Unit Economics, Compliance."
         },
         {
             title: "Product Management Launchpad",
             school: "Upraised",
             location: "Bengaluru, KA",
             period: "March 2025",
-            courses: "Product Lifecycle, UX Basics, Data and Decision Making, Market Research, Detail Oriented, User stories, Product Presentation, GTM Strategy, Product Vision and Strategy, Problem-Solving, Customer-Centric Approach"
+            courses: "Product Lifecycle, UX Basics, GTM Strategy, Product Vision, Problem-Solving."
         },
         {
             title: "B.E. Telecommunication",
             school: "Dayanand Sagar College Of Engineering",
             location: "Bengaluru, KA",
             period: "August 2022",
-            courses: "Electronics,Software Development,Presentations, Coding Clubs, Basics of Entrepreneurship and Management, Public Speaking, Leadership"
+            courses: "Electronics, Software Development, Entrepreneurship, Public Speaking."
         }
     ],
     projects: [
         {
             title: "Slice Case Study",
-            role: "",
-            description: "Slice began by disrupting credit access for young Indians with its popular card, achieving Unicorn status. Following major RBI regulatory hurdles, the company strategically pivoted and merged with a small finance bank to gain a full banking license, securing long-term operational resilience and future expansion."
-        },
-        {
-            title: "Code4Scranton",
-            role: "Member",
-            description: "Member of a regional nonprofit organization dedicated to creating mobile apps and websites for underfunded community organizations. Worked for 9 registered nonprofits."
+            role: "Case Study",
+            description: "Analyzed Slice's pivot and merger with a small finance bank to secure a banking license after RBI regulatory hurdles."
         },
         {
             title: "Personal Finance App",
-            role: "Personal Projects",
-            description: "Published app on Google Play with 500+ installations to date."
+            role: "Indie Developer",
+            description: "Developed and published an app on Google Play with 500+ installations."
         }
     ],
     skills: {
-        skills: ["JIRA", "Notion", "Figma", "SQL", "Excel", "Python", "Power BI", "Cross-Functional Team Management", "Project Management"],
-        languages: ["English (Fluent)", "Hindi (Fluent)", "Kannada (native)"]
+        skills: ["JIRA", "Notion", "Figma", "SQL", "Excel", "Python", "Power BI", "Project Management", "Cross-Functional Leadership"],
+        languages: ["English (Fluent)", "Hindi (Fluent)", "Kannada (Native)"]
     }
 };
 
